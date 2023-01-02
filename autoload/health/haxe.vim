@@ -15,6 +15,6 @@ function! s:checkEnvironment() abort
     endif
 endfunction
 
-function! health#haxe() abort
+function! health#haxe#check() abort
     call s:checkEnvironment()
 endfunction
