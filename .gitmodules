@@ -1,3 +1,0 @@
-[submodule "haxe-language-server"]
-	path = haxe-language-server
-	url = https://github.com/vshaxe/haxe-language-server.git

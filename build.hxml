@@ -1,5 +1,0 @@
--lua lua/neovaxe/init.lua
--cp src
--D lua_vanilla
--cmd lua lua/neovaxe/init.lua
--main NeoVaxe
