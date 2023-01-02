@@ -1,10 +1,10 @@
 *haxe.txt* A simplified fork of vaxe.
 
 ==============================================================================
-Author:  Rudy Ges <vim@kla.bz>                                   *vaxe-author*
+Author:  Rudy Ges <vim@kla.bz>                                   *haxe-author*
 License: WTFPL (see |haxe-license|)
 ==============================================================================
-CONTENTS                                        *vaxe-contents*
+CONTENTS                                        *haxe-contents*
 
 |haxe-introduction|                   Introduction and Feature Summary
 
