@@ -1,29 +1,25 @@
-echo "epic wisdom"
-syn region    mochaComment start="#" end="$"
-syn keyword   mochaConstant true false nil
+if exists("b:current_syntax")
+  finish
+endif
 
-syn region    mochaString start="'" end="'" contains=mochaEscape
-syn match     mochaEscape contained /\\\([nts\\']\|x\x\{2}\)/
+runtime! syntax/html.vim
+unlet! b:current_syntax
 
-syn region    mochaArray start="\[" end="\]" transparent fold
-syn region    mochaBlock start="{" end="}"  transparent fold
+syn match htmlTagName contained "\<[a-zA-Z:\.]*\>"
+syn keyword wisdomTODO contained TODO FIXME XXX
+syn match wisdomComment "//.*" contains=wisdomTODO,@Spell
+syn region wisdomComment2 start=+/\*+ end=+\*/+ contains=haxeTODO,@Spell
 
-syn match     mochaDec "[+-]\?\d\+\.\d\+\([eE][+-]\?\d\+\(\.\d\+\)\?\)\?"
-syn match     mochaInt "[+-]\?\d\+\(\.\)\@!\([eE][+-]\?\d\+\(\.\d\+\)\?\)\?"
-syn match     mochaInt "\<0[xX][a-fA-F0-9]\+"
+let s:conditionals = ["if", "else", "elseif", "switch", "case"]
+for s:conditional in s:conditionals
+	syn match wisdomConditional . s:conditional . contained containedin=htmlTagName
+endfor
 
-syn match     mochaIdentifier /\v[a-zA-Z_]*:/
+syn match wisdomRepeat "foreach" contained containedin=htmlTagName
 
-hi default link mochaComment Comment
-hi default link mochaConstant Constant
+syn region haxeWisdom start=+${+ms=s+2 end=+}+me=e-1 keepend contains=@haxe,@Spell
 
-hi default link mochaString String
-hi default link mochaEscape Special
-
-hi default link mochaArray Operator
-hi default link mochaBlock Operator
-
-hi default link mochaDec Number
-hi default link mochaInt Number
-
-hi default link mochaIdentifier Identifier
+hi def link wisdomComment Comment
+hi def link wisdomComment2 Comment
+hi def link wisdomConditional Conditional
+hi def link wisdomRepeat Repeat
