@@ -91,6 +91,10 @@ syn region haxeInterpolated contained start=+\(\$\(\$\$\)\+\)\@<!${+ end=+}+ con
 syn region haxeDString start=+"+ end=+"+ contains=haxeSpecialCharacter,haxeErrorCharacter,@Spell
 syn region haxeSString start=+'+ end=+'+ contains=haxeSpecialCharacter,haxeErrorCharacter,haxeIntSpecialChar,haxeInterpolatedIdent,haxeInterpolated,@Spell
 
+unlet! b:current_syntax
+syn include @wisdom syntax/wisdom.vim
+syn region haxeWisdom start="+'<>+"ms=s+3 end="+'+"me=e-1 keepend contains=@wisdom,@Spell
+
 " int/float/bool literal
 " ----------------------
 syn match haxeInt "\<\([0-9]\+\|0x[0-9a-fA-F]\+\)\>"
