@@ -99,7 +99,7 @@ syn region haxeSString start=+'+ end=+'+ contains=haxeSpecialCharacter,haxeError
 " --------------
 unlet! b:current_syntax
 syn include @wisdom syntax/wisdom.vim
-syn region haxeWisdom matchgroup=haxeSString start=+'<>+ end=+'+ skip=+\v'[^']*\_.{-}[^']*'+ keepend contains=@wisdom,haxeInterpolatedIdent,@Spell
+syn region haxeWisdom matchgroup=haxeSString start=+'<>+ end=+'+ skip=+'\_.\{-}'+ keepend contains=@wisdom,haxeSString,haxeInterpolatedIdent,@Spell
 
 " int/float/bool literal
 " ----------------------
@@ -238,7 +238,7 @@ HaxeHiLink haxeCompilerMeta Identifier
 HaxeHiLink haxeRegex String
 HaxeHiLink haxeDString String
 HaxeHiLink haxeSString Character
-HaxeHiLink saxeSpecialCharacter SpecialChar
+HaxeHiLink haxeSpecialCharacter SpecialChar
 HaxeHiLink haxeIntSpecialChar SpecialChar
 HaxeHiLink haxeRegexEscape SpecialChar
 HaxeHiLink haxeErrorCharacter Error
