@@ -17,6 +17,7 @@ endif
 " characters that cannot be in a haxe program (outside a string)
 syn match haxeError "[\\`]"
 
+
 " keywords
 " --------
 syn keyword haxeTypedef typedef extends implements
@@ -37,6 +38,9 @@ syn keyword haxeFunction function __dollar__new new
 syn match haxeFunction "\<__[^_]\+__\>"
 syn keyword haxeKeyword untyped cast continue break return trace var
 syn match haxeKeyword "\$type"
+
+syn match haxeBracket "{"
+syn match haxeBracket "}"
 
 syn match haxeError "\<#\@<!elseif\>"
 
@@ -91,9 +95,11 @@ syn region haxeInterpolated contained start=+\(\$\(\$\$\)\+\)\@<!${+ end=+}+ con
 syn region haxeDString start=+"+ end=+"+ contains=haxeSpecialCharacter,haxeErrorCharacter,@Spell
 syn region haxeSString start=+'+ end=+'+ contains=haxeSpecialCharacter,haxeErrorCharacter,haxeIntSpecialChar,haxeInterpolatedIdent,haxeInterpolated,@Spell
 
+" wisdom support
+" --------------
 unlet! b:current_syntax
 syn include @wisdom syntax/wisdom.vim
-syn region haxeWisdom matchgroup=haxeSString start=+'<>+ end=+'+ keepend contains=@wisdom,@Spell
+syn region haxeWisdom matchgroup=haxeSString start=+'<>+ end=+'+ skip=+\v'[^']*\_.{-}[^']*'+ keepend contains=@wisdom,haxeInterpolatedIdent,@Spell
 
 " int/float/bool literal
 " ----------------------
@@ -225,7 +231,6 @@ syn match haxeCompilerMeta "@:\(
     \\|volatile
     \\)\>"
 
-
 syn sync ccomment haxeComment2 minlines=10
 
 HaxeHiLink haxeMeta Macro
@@ -233,7 +238,7 @@ HaxeHiLink haxeCompilerMeta Identifier
 HaxeHiLink haxeRegex String
 HaxeHiLink haxeDString String
 HaxeHiLink haxeSString Character
-HaxeHiLink haxeSpecialCharacter SpecialChar
+HaxeHiLink saxeSpecialCharacter SpecialChar
 HaxeHiLink haxeIntSpecialChar SpecialChar
 HaxeHiLink haxeRegexEscape SpecialChar
 HaxeHiLink haxeErrorCharacter Error
@@ -263,6 +268,7 @@ HaxeHiLink haxeConditional Conditional
 HaxeHiLink haxeConstant Constant
 HaxeHiLink haxeFunction Function
 HaxeHiLink haxeKeyword Keyword
+HaxeHiLink haxeBracket Noise
 
 delcommand HaxeHiLink
 
